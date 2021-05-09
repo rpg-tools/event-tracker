@@ -1,24 +1,20 @@
-# event-tracker
+# Event-tracker
+Event tracker to know what time it is in your game and note when different events append.
 
-## Project setup
-```
-npm install
-```
+## TODO 
+- [ ] Day Tracker
+- [ ] Logbook
+  - [ ] Create
+  - [ ] Update
+  - [ ] Delete
+  - [ ] Export
+  - [ ] Import
+- [ ] Logbook event
+  - [ ] Add
+  - [ ] Update
+  - [ ] Delete
+  - [ ] Add events in notes in the future
+  - [ ] Convert note to event
+- [ ] Split day tracker *(when your group devide)*
+- [ ] Merge day tracker *(when your group is together again)*
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
