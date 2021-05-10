@@ -1,25 +1,25 @@
 <template>
   <div id="app">
     <!--<img alt="Vue logo" src="./assets/logo.png">-->
-    <Clock/>
+    <LeftPanel/>
   </div>
 </template>
 
 <script>
-import Clock from './components/Clock.vue'
+import LeftPanel from "@/components/LeftPanel";
 
 export default {
   name: 'App',
   components: {
-    Clock
+    LeftPanel,
   }
 }
 </script>
 
 <style>
 #app {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
 }
 </style>
