@@ -2,13 +2,19 @@
 Event tracker to know what time it is in your game and note when different events append.
 
 ## TODO 
-- [ ] Day Tracker
+- [ ] DayLight Tracker
+- [ ] Day tracker
+- [ ] Time tracker
 - [ ] Logbook
   - [ ] Create
   - [ ] Update
   - [ ] Delete
   - [ ] Export
   - [ ] Import
+  - [ ] Categories
+    - [ ] Fight
+    - [ ] Encounter
+    - [ ] Exploring
 - [ ] Logbook event
   - [ ] Add
   - [ ] Update
@@ -17,4 +23,5 @@ Event tracker to know what time it is in your game and note when different event
   - [ ] Convert note to event
 - [ ] Split day tracker *(when your group devide)*
 - [ ] Merge day tracker *(when your group is together again)*
+- [ ] Add countdown (in hours or in days, to do a travel, countdown before something...)
 
