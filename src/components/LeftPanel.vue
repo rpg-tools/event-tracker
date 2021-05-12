@@ -1,6 +1,6 @@
 <template>
   <div class="left_panel">
-    <clock class="clock" hour="22"></clock>
+    <clock class="clock" hour="22n"></clock>
   </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
 .left_panel {
   width: 250px;
   height: 100%;
-  background-color: #2c3e50;
+  background-color: #92B6D1;
   border-right: solid #2c3e50 1px;
   box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
   color: #ffffff;
