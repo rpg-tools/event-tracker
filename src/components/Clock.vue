@@ -1,17 +1,16 @@
 <template>
   <div>
     <DayLight_Clock :hour="hour"></DayLight_Clock>
-    <div class="time">
-
-    </div>
+    <Time_Clock :hour="hour"></Time_Clock>
   </div>
 </template>
 
 <script>
 import DayLight_Clock from "@/components/DayLight_Clock";
+import Time_Clock from "@/components/Time_Clock";
 export default {
   name: 'Clock',
-  components: {DayLight_Clock},
+  components: {Time_Clock, DayLight_Clock},
   props: {
     hour: Number
   }

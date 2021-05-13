@@ -1,6 +1,6 @@
 <template>
   <div class="left_panel">
-    <clock class="clock" hour="22n"></clock>
+    <clock class="clock" hour="22"></clock>
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .left_panel {
-  width: 250px;
+  width: 350px;
   height: 100%;
   background-color: #92B6D1;
   border-right: solid #2c3e50 1px;

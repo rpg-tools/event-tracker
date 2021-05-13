@@ -1,7 +1,7 @@
 <template>
   <div class="clock">
     <div class="background_mask">
-      <div class="background_clock" :style="btnStyles" style="transform: rotate(calc(-${ hour }deg*360/24))"></div>
+      <div class="background_clock" :style="btnStyles"></div>
       <div class="clock_arrow"></div>
       <div class="clock_ball"></div>
     </div>
@@ -27,12 +27,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .clock {
-  width: 200px;
-  height: 200px;
+  width: 300px;
 }
 .background_mask {
-  height: 100px;
-  width: 200px;
+  height: 155px;
+  width: 310px;
   overflow: hidden;
   border-bottom: solid rgba(255,255,255,0.5) 5px;
   position: relative;
@@ -41,10 +40,10 @@ export default {
 .clock_arrow{
   position: absolute;
   top: 0px;
-  left: 95px;
+  left: 150px;
   width: 0px;
   height: 0px;
-  border-top: solid red 20px;
+  border-top: solid #F7665E 20px;
   border-left: solid transparent 5px;
   border-right: solid transparent 5px;
   z-index:10;
@@ -71,8 +70,8 @@ export default {
   #FBEBA5 calc(12.5%*100/24), #FDDDAA calc(16.5%*100/24),
   #F6D3AF calc(17.5%*100/24), #F8C3B9 calc(20.5%*100/24),
   #DABEE3 calc(21.5%*100/24));
-  width: 196px;
-  height: 196px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   border: solid rgba(255,255,255,0.5) 5px;
   z-index:0;
