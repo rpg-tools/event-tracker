@@ -1,7 +1,7 @@
 <template>
   <div>
     <DayLight_Clock :hour="hour"></DayLight_Clock>
-    <Time_Clock :hour="hour"></Time_Clock>
+    <Time_Clock :hour="hour" :minute="minute"></Time_Clock>
   </div>
 </template>
 
@@ -12,7 +12,8 @@ export default {
   name: 'Clock',
   components: {Time_Clock, DayLight_Clock},
   props: {
-    hour: Number
+    hour: Number,
+    minute: Number
   }
 }
 </script>

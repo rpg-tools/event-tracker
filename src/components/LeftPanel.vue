@@ -1,6 +1,6 @@
 <template>
   <div class="left_panel">
-    <clock class="clock" hour="22"></clock>
+    <clock class="clock" hour="22" minute="34"></clock>
   </div>
 </template>
 

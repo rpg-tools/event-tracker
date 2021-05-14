@@ -1,7 +1,7 @@
 <template>
   <div class="time">
     <div class="timer">
-      {{hour}} : 00
+      {{hour}} : {{ minute }}
     </div>
     <div class="date">
       17 / 20 / X777
@@ -14,7 +14,8 @@ export default {
   name: 'Time_Clock',
   components: {},
   props: {
-    hour: Number
+    hour: Number,
+    minute: Number
   }
 }
 </script>
