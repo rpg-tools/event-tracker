@@ -12,7 +12,7 @@ export const time_store = new Vuex.Store({
         year: 0
     },
     mutations: {
-        add_minutes(state, minutes) {
+        add_minute(state, minutes) {
             add_minutes(state, minutes)
         },
         add_hour(state, hours) {
