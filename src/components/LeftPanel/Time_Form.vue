@@ -49,24 +49,23 @@ export default {
     },
     remove_time : function(time_to_remove) {
       if (this.minute_style) {
-        this.store.commit('remove_minute', time_to_remove)
+        this.$store.commit('remove_minute', parseInt(time_to_remove))
       }
       if (this.hour_style) {
-        this.store.commit('remove_hour', time_to_remove)
+        this.$store.commit('remove_hour', parseInt(time_to_remove))
       }
       if (this.day_style) {
-        this.store.commit('remove_day', time_to_remove)
+        this.$store.commit('remove_day', parseInt(time_to_remove))
       }
       if (this.month_style) {
-        this.store.commit('remove_month', time_to_remove)
+        this.$store.commit('remove_month', parseInt(time_to_remove))
       }
       if (this.year_style) {
-        this.store.commit('remove_year', time_to_remove)
+        this.$store.commit('remove_year', parseInt(time_to_remove))
       }
     },
     add_time : function(time_to_add) {
       if (this.minute_style) {
-        // eslint-disable-next-line no-undef
         this.$store.commit('add_minute', parseInt(time_to_add))
       }
       if (this.hour_style) {

@@ -7,13 +7,13 @@ export const time_store = new Vuex.Store({
     state: {
         minute: 0,
         hour: 0,
-        day: 0,
-        month: 0,
-        year: 0
+        day: 1,
+        month: 1,
+        year: 1
     },
     mutations: {
         add_minute(state, minutes) {
-            add_minutes(state, minutes)
+            add_minute(state, minutes)
         },
         add_hour(state, hours) {
             add_hour(state, hours)
@@ -26,6 +26,21 @@ export const time_store = new Vuex.Store({
         },
         add_year(state, hours) {
             add_year(state, hours)
+        },
+        remove_minute(state, minutes) {
+            remove_minute(state, minutes)
+        },
+        remove_hour(state, minutes) {
+            remove_hour(state, minutes)
+        },
+        remove_day(state, minutes) {
+            remove_day(state, minutes)
+        },
+        remove_month(state, minutes) {
+            remove_month(state, minutes)
+        },
+        remove_year(state, minutes) {
+            remove_year(state, minutes)
         }
     },
     getters: {
@@ -37,7 +52,8 @@ export const time_store = new Vuex.Store({
     }
 })
 
-function add_minutes(state, minutes) {
+/* ----- ADD ----- */
+function add_minute(state, minutes) {
     state.minute = state.minute + minutes
     if (state.minute >= 60) {
         let nbr_add_hour = (state.minute - (state.minute % 60)) / 60
@@ -75,4 +91,50 @@ function add_month(state, month) {
 
 function add_year(state, year) {
     state.year = state.year + year
+}
+
+/* ----- REMOVE ----- */
+function remove_minute(state, minutes) {
+    if (minutes > state.minute) {
+        let delta_minutes = minutes - state.minute
+        state.minute = 60 - (delta_minutes%60)
+        remove_hour(state, 1 + ((delta_minutes-(delta_minutes%60)) / 60))
+    } else {
+        state.minute = state.minute - minutes
+    }
+}
+
+function remove_hour(state, hours){
+    if (hours > state.hour) {
+        let delta_hours = hours - state.hour
+        state.hour = 24 - (delta_hours%24)
+        remove_day(state, 1 + ((delta_hours-(delta_hours%24)) / 24))
+    } else {
+        state.hour = state.hour - hours
+    }
+}
+
+function remove_day(state, days) {
+    if (days >= state.day) {
+        let delta_days = days - state.day
+        state.day = 30 - (delta_days%30)
+        remove_month(state, 1 + ((delta_days-(delta_days%30)) / 30))
+    } else {
+        state.day = state.day - days
+    }
+}
+
+function remove_month(state, month) {
+    if (month >= state.month) {
+        let delta_months = month - state.month
+        state.month = 12 - (delta_months%12)
+        remove_year(state, 1 + ((delta_months-(delta_months%12)) / 12))
+    } else {
+        state.month = state.month - month
+    }
+
+}
+
+function remove_year(state, year) {
+    state.year = state.year - year
 }
