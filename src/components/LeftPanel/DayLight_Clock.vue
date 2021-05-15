@@ -25,11 +25,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .clock {
-  width: 300px;
+  width: 290px;
 }
 .background_mask {
   height: 155px;
-  width: 310px;
+  width: 300px;
   overflow: hidden;
   border-bottom: solid rgba(255,255,255,0.5) 5px;
   position: relative;
@@ -68,8 +68,8 @@ export default {
   #FBEBA5 calc(12.5%*100/24), #FDDDAA calc(16.5%*100/24),
   #F6D3AF calc(17.5%*100/24), #F8C3B9 calc(20.5%*100/24),
   #DABEE3 calc(21.5%*100/24));
-  width: 300px;
-  height: 300px;
+  width: 290px;
+  height: 290px;
   border-radius: 50%;
   border: solid rgba(255,255,255,0.5) 5px;
   z-index:0;
