@@ -2,9 +2,9 @@
 Event tracker to know what time it is in your game and note when different events append.
 
 ## TODO 
-- [ ] DayLight Tracker
-- [ ] Day tracker
-- [ ] Time tracker
+- [x] DayLight Tracker
+- [x] Day tracker
+- [x] Time tracker
 - [ ] Logbook
   - [ ] Create
   - [ ] Update

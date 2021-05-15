@@ -1,16 +1,24 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VuexPersist from 'vuex-persist'
+
+const vuexPersist = new VuexPersist({
+    key: 'rpg-event-tracker',
+    storage: window.localStorage
+})
 
 Vue.use(Vuex)
 
-export const time_store = new Vuex.Store({
+export const store = new Vuex.Store({
     state: {
         minute: 0,
         hour: 0,
         day: 1,
         month: 1,
-        year: 1
+        year: 1,
+        logs: []
     },
+    plugins: [vuexPersist.plugin],
     mutations: {
         add_minute(state, minutes) {
             add_minute(state, minutes)
@@ -41,6 +49,9 @@ export const time_store = new Vuex.Store({
         },
         remove_year(state, minutes) {
             remove_year(state, minutes)
+        },
+        add_logs(state, log) {
+            state.logs.push(log)
         }
     },
     getters: {
@@ -48,7 +59,8 @@ export const time_store = new Vuex.Store({
         hour: state => state.hour,
         day: state => state.day,
         month: state => state.month,
-        year: state => state.year
+        year: state => state.year,
+        logs: state => state.logs
     }
 })
 

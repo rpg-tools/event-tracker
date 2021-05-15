@@ -121,6 +121,7 @@ export default {
   text-align: center;
   border-radius: 4px;
   cursor: pointer;
+  box-shadow: 2px 2px 4px rgba(20,20,20,0.4);
 }
 
 .time_form > .line > .selected_time_unit {
