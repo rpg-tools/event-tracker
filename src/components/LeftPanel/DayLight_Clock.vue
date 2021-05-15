@@ -15,7 +15,7 @@ export default {
   computed: {
     btnStyles() {
       return {
-        transform: `rotate(calc(-${this.$store.getters.hour}deg*360/24))`
+        transform: `rotate(calc(-${this.$store.getters.hour + (this.$store.getters.minute / 60)}deg*360/24))`
       };
     }
   }
@@ -28,7 +28,7 @@ export default {
   width: 290px;
 }
 .background_mask {
-  height: 155px;
+  height: 150px;
   width: 300px;
   overflow: hidden;
   border-bottom: solid rgba(255,255,255,0.5) 5px;
@@ -53,7 +53,7 @@ export default {
   height: 80px;
   background: radial-gradient(#eeeeee 0%, transparent 50%);
   content: 'o';
-  left: 115px;
+  left: 110px;
   bottom: -40px;
   border-radius: 50%;
 }
