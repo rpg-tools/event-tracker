@@ -1,8 +1,7 @@
 <template>
   <div>
-    <DayLight_Clock :hour="hour"></DayLight_Clock>
-    <Time_Clock :hour="hour" :minute="minute"></Time_Clock>
-    {{ $store.getters.flavor }}
+    <DayLight_Clock></DayLight_Clock>
+    <Time_Clock></Time_Clock>
   </div>
 </template>
 
@@ -12,10 +11,7 @@ import Time_Clock from "@/components/Time_Clock";
 export default {
   name: 'Clock',
   components: {Time_Clock, DayLight_Clock},
-  props: {
-    hour: Number,
-    minute: Number
-  }
+  props: {}
 }
 </script>
 

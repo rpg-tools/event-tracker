@@ -11,13 +11,11 @@
 <script>
 export default {
   name: 'DayLight_Clock',
-  props: {
-    hour: Number
-  },
+  props: {},
   computed: {
     btnStyles() {
       return {
-        transform: `rotate(calc(-${this.hour}deg*360/24))`
+        transform: `rotate(calc(-${this.$store.getters.hour}deg*360/24))`
       };
     }
   }

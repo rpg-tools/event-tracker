@@ -1,10 +1,10 @@
 <template>
   <div class="time">
     <div class="timer">
-      {{hour}} : {{ minute }}
+      {{$store.getters.hour}} : {{ $store.getters.minute }}
     </div>
     <div class="date">
-      17 / 20 / X777
+      {{ $store.getters.day }} / {{ $store.getters.month }} / X{{ $store.getters.year }}
     </div>
   </div>
 </template>
@@ -13,10 +13,7 @@
 export default {
   name: 'Time_Clock',
   components: {},
-  props: {
-    hour: Number,
-    minute: Number
-  }
+  props: {}
 }
 </script>
 
