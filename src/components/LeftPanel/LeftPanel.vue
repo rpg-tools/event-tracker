@@ -30,5 +30,6 @@ export default {
   box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
   color: #ffffff;
   padding: 25px 20px;
+  z-index: 10;
 }
 </style>

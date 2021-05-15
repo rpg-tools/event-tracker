@@ -29,7 +29,7 @@ export default {
 }
 .background_mask {
   height: 150px;
-  width: 300px;
+  width: 290px;
   overflow: hidden;
   border-bottom: solid rgba(255,255,255,0.5) 5px;
   position: relative;
@@ -38,7 +38,7 @@ export default {
 .clock_arrow{
   position: absolute;
   top: 0px;
-  left: 150px;
+  left: 145px;
   width: 0px;
   height: 0px;
   border-top: solid #F7665E 20px;
@@ -68,8 +68,8 @@ export default {
   #FBEBA5 calc(12.5%*100/24), #FDDDAA calc(16.5%*100/24),
   #F6D3AF calc(17.5%*100/24), #F8C3B9 calc(20.5%*100/24),
   #DABEE3 calc(21.5%*100/24));
-  width: 290px;
-  height: 290px;
+  width: 280px;
+  height: 280px;
   border-radius: 50%;
   border: solid rgba(255,255,255,0.5) 5px;
   z-index:0;
