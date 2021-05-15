@@ -2,6 +2,7 @@
   <div>
     <DayLight_Clock :hour="hour"></DayLight_Clock>
     <Time_Clock :hour="hour" :minute="minute"></Time_Clock>
+    {{ $store.getters.flavor }}
   </div>
 </template>
 
