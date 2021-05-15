@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Clock from "@/components/Clock";
+import Clock from "@/components/LeftPanel/Clock";
 export default {
   name: 'LeftPanel',
   components: {

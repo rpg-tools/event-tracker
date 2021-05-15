@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import LeftPanel from "@/components/LeftPanel";
+import LeftPanel from "@/components/LeftPanel/LeftPanel";
 
 export default {
   name: 'App',

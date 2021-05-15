@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import DayLight_Clock from "@/components/DayLight_Clock";
-import Time_Clock from "@/components/Time_Clock";
+import DayLight_Clock from "@/components/LeftPanel/DayLight_Clock";
+import Time_Clock from "@/components/LeftPanel/Time_Clock";
 export default {
   name: 'Clock',
   components: {Time_Clock, DayLight_Clock},
