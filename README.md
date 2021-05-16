@@ -11,12 +11,12 @@ Event tracker to know what time it is in your game and note when different event
   - [ ] Delete
   - [ ] Export
   - [ ] Import
-  - [ ] Categories
-    - [ ] Fight
-    - [ ] Encounter
-    - [ ] Exploring
-- [ ] Logbook event
-  - [ ] Add
+  - [x] Categories
+    - [x] Fight
+    - [x] Encounter
+    - [x] Exploring
+- [x] Logbook event
+  - [x] Add
   - [ ] Update
   - [ ] Delete
   - [ ] Add events in notes in the future

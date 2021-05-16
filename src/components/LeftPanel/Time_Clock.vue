@@ -1,7 +1,7 @@
 <template>
   <div class="time">
     <div class="timer">
-      {{$store.getters.hour}} : {{ $store.getters.minute }}
+      {{getNumberDoubleDigit($store.getters.hour)}} : {{ getNumberDoubleDigit($store.getters.minute) }}
     </div>
     <div class="date">
       {{ $store.getters.day }} / {{ $store.getters.month }} / X{{ $store.getters.year }}
@@ -13,7 +13,15 @@
 export default {
   name: 'Time_Clock',
   components: {},
-  props: {}
+  props: {},
+  methods : {
+    getNumberDoubleDigit: function(number) {
+      if (number < 10) {
+        return "0" + number
+      }
+      return number
+    }
+  }
 }
 </script>
 
