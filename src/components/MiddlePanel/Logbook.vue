@@ -19,5 +19,6 @@ export default {
   overflow-x: hidden;
   overflow-y: scroll;
   font-family: 'Roboto', sans-serif;
+  scroll-behavior: smooth;
 }
 </style>
