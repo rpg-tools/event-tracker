@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import { v4 as uuidv4 } from 'uuid';
+
 export default {
   name: "LogForm",
   data: function () {
@@ -48,7 +50,8 @@ export default {
             "day" : this.$store.getters.day,
             "month" : this.$store.getters.month,
             "year" : this.$store.getters.year
-          }
+          },
+          "id" : uuidv4()
         })
 
         this.log_input = ""

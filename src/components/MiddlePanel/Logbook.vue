@@ -1,6 +1,6 @@
 <template>
   <div class="logbook">
-    <Log v-for="log in $store.getters.logs" :key="log.title+Date.now()" :log="log">
+    <Log v-for="log in $store.getters.logs" :key="log.id" :log="log">
     </Log>
   </div>
 </template>
