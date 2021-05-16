@@ -14,4 +14,5 @@ Event tracker to know what time it is in your game and note when different event
   - [ ] End a quest
 - [ ] Add countdown (in hours or in days, to do a travel, countdown before something...)
 - [ ] Add todo list
+- [ ] Refactor the quest list to explicit say "it the quest list"
 
