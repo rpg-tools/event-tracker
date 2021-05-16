@@ -26,7 +26,8 @@ export default {
       categories: [
         "encounter",
         "exploring",
-        "fight"
+        "fight",
+        "note"
       ],
       is_textarea_error : false,
       is_select_error : false,

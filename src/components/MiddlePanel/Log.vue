@@ -2,10 +2,10 @@
   <div class="log" v-on:click="select_log(log)">
     <div class="token_container">
       <div class="token" v-bind:class="{ encounter_token: log.type == 'encounter', exploring_token: log.type == 'exploring',
-          fight_token: log.type == 'fight' }"></div>
+          fight_token: log.type == 'fight', note_token: log.type == 'note' }"></div>
     </div>
     <div  class="content" v-bind:class="{ encounter: log.type == 'encounter', exploring: log.type == 'exploring',
-          fight: log.type == 'fight' }">
+          fight: log.type == 'fight', note: log.type == 'note' }">
       <div class="title">
         {{log.title}}
         <span class="description">
@@ -139,5 +139,21 @@ export default {
   background-image: url("https://game-icons.net/icons/ffffff/transparent/1x1/delapouite/walk.svg");
   border: solid #01579b 2px;
   background-color: #4181b4; /*rgba(1,87,155, 0.75);*/
+}
+
+/* NOTE */
+.note {
+  border: solid #607d8b 2px;
+  background-color: rgba(1,87,155, 0.2);
+}
+
+.note > .message {
+  border-top: solid #607d8b 2px;
+}
+
+.note_token {
+  background-image: url("https://game-icons.net/icons/ffffff/transparent/1x1/delapouite/scroll-quill.svg");
+  border: solid #607d8b 2px;
+  background-color: #829ba8; /*rgba(96,125,139, 0.75);*/
 }
 </style>
