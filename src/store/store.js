@@ -76,6 +76,9 @@ export const store = new Vuex.Store({
         month: state => state.month,
         year: state => state.year,
         logs: state => state.logs,
+        quests: state => state.logs.filter(log => {
+            return log.type == "quest"
+        }),
         selected_log: state => state.selected_log
     }
 })

@@ -14,7 +14,9 @@
           {{getNumberDoubleDigit(log.time.hour)}}:{{getNumberDoubleDigit(log.time.minute)}}
         </span>
       </div>
-      <div class="message">{{log.log}}</div>
+      <div class="message">
+        <div v-for="desc_line in log.log.split('\n')" :key="desc_line+Math.random()">{{desc_line}}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -45,6 +47,7 @@ export default {
   color: #000;
   text-shadow: none;
   margin-top: 8px;
+  cursor: pointer;
 }
 
 .token_container {

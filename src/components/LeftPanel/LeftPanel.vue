@@ -2,15 +2,18 @@
   <div class="left_panel">
     <clock></clock>
     <Time_Form></Time_Form>
+    <QuestList></QuestList>
   </div>
 </template>
 
 <script>
 import Clock from "@/components/LeftPanel/Clock";
 import Time_Form from "@/components/LeftPanel/Time_Form";
+import QuestList from "@/components/LeftPanel/QuestList";
 export default {
   name: 'LeftPanel',
   components: {
+    QuestList,
     Time_Form,
     Clock
   },
