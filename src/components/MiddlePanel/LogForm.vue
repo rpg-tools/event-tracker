@@ -10,6 +10,8 @@
       </select>
       <div class="button_add" v-on:click="add_log" v-if="log_id == ''">Add</div>
       <div class="button_add" v-on:click="update_log" v-if="log_id != ''">Update</div>
+      <div class="button_add" v-on:click="delete_log" v-if="log_id != ''">Delete</div>
+      <div class="button_add" v-on:click="clear_log" v-if="log_id != ''">Clear</div>
     </div>
   </div>
 </template>
@@ -37,13 +39,16 @@ export default {
   },
   created: function() {
     this.$store.subscribe((mutation, state) => {
+      this.is_textarea_error = false
+      this.is_select_error = false
+      this.is_title_error = false
       if (mutation.type === 'select_log') {
         this.log_input = state.selected_log.log;
         this.log_category_input = state.selected_log.type;
         this.log_title = state.selected_log.title;
         this.log_id = state.selected_log.id;
       }
-      if (mutation.type === 'update_log' || mutation.type === 'delete_log') {
+      if (mutation.type === 'update_log' || mutation.type === 'delete_log' || mutation.type === 'unselect_log') {
         this.log_input = "";
         this.log_category_input = "";
         this.log_title = "";
@@ -101,6 +106,12 @@ export default {
         this.log_category_input = ""
         this.log_title = ""
       }
+    },
+    delete_log: function () {
+      this.$store.commit('delete_log')
+    },
+    clear_log: function() {
+      this.$store.commit('unselect_log')
     }
   },
 }
@@ -119,6 +130,7 @@ export default {
   border-radius: 8px;
   padding: 8px;
   display: flex;
+  height: 124px;
 }
 
 input {
@@ -132,7 +144,7 @@ textarea {
   margin-right: 8px;
   border: solid rgba(200,200,200,0.8) 1px;
   border-radius: 4px;
-  height: 48px;
+  height: 88px;
 }
 
 .options {
@@ -155,7 +167,7 @@ textarea {
   border: solid rgba(240,240,240,0.6) 2px;
   font-family: 'Roboto', sans-serif;
   margin: 4px 4px;
-  padding: 8px 16px;
+  padding: 4px 16px;
   color: #2c3e50;
   text-align: center;
   border-radius: 4px;

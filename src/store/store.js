@@ -64,6 +64,9 @@ export const store = new Vuex.Store({
         delete_log(state) {
             state.logs.splice(state.logs.indexOf(state.selected_log), 1)
             state.selected_log = null
+        },
+        unselect_log(state) {
+            state.selected_log = null
         }
     },
     getters: {

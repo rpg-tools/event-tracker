@@ -15,7 +15,7 @@ export default {
 <style scoped>
 .logbook {
   width: 100%;
-  height: calc(100% - 160px);
+  height: calc(100% - 200px);
   overflow-x: hidden;
   overflow-y: scroll;
   font-family: 'Roboto', sans-serif;
