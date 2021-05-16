@@ -27,6 +27,7 @@ export default {
         "encounter",
         "exploring",
         "fight",
+        "quest",
         "note"
       ],
       is_textarea_error : false,

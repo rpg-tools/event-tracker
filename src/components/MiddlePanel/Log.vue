@@ -2,10 +2,11 @@
   <div class="log" v-on:click="select_log(log)">
     <div class="token_container">
       <div class="token" v-bind:class="{ encounter_token: log.type == 'encounter', exploring_token: log.type == 'exploring',
-          fight_token: log.type == 'fight', note_token: log.type == 'note' }"></div>
+          fight_token: log.type == 'fight', note_token: log.type == 'note', quest_token: log.type == 'quest',
+          treasure_token: log.type == 'treasure' }"></div>
     </div>
     <div  class="content" v-bind:class="{ encounter: log.type == 'encounter', exploring: log.type == 'exploring',
-          fight: log.type == 'fight', note: log.type == 'note' }">
+          fight: log.type == 'fight', note: log.type == 'note', quest: log.type == 'quest', treasure: log.type == 'treasure' }">
       <div class="title">
         {{log.title}}
         <span class="description">
@@ -136,7 +137,7 @@ export default {
 }
 
 .exploring_token {
-  background-image: url("https://game-icons.net/icons/ffffff/transparent/1x1/delapouite/walk.svg");
+  background-image: url("https://game-icons.net/icons/ffffff/transparent/1x1/lorc/compass.svg");
   border: solid #01579b 2px;
   background-color: #4181b4; /*rgba(1,87,155, 0.75);*/
 }
@@ -144,7 +145,7 @@ export default {
 /* NOTE */
 .note {
   border: solid #607d8b 2px;
-  background-color: rgba(1,87,155, 0.2);
+  background-color: rgba(96,125,139, 0.2);
 }
 
 .note > .message {
@@ -155,5 +156,37 @@ export default {
   background-image: url("https://game-icons.net/icons/ffffff/transparent/1x1/delapouite/scroll-quill.svg");
   border: solid #607d8b 2px;
   background-color: #829ba8; /*rgba(96,125,139, 0.75);*/
+}
+
+/* QUEST */
+.quest {
+  border: solid #673ab7 2px;
+  background-color: rgba(103,58,183, 0.2);
+}
+
+.quest > .message {
+  border-top: solid #673ab7 2px;
+}
+
+.quest_token {
+  background-image: url("https://game-icons.net/icons/ffffff/transparent/1x1/lorc/treasure-map.svg");
+  border: solid #673ab7 2px;
+  background-color: #8768c9; /*rgba(103,58,183, 0.75);*/
+}
+
+/* TREASURE */
+.treasure {
+  border: solid #fbc02d 2px;
+  background-color: rgba(251,192,45, 0.2);
+}
+
+.treasure > .message {
+  border-top: solid #fbc02d 2px;
+}
+
+.treasure_token {
+  background-image: url("https://game-icons.net/icons/ffffff/transparent/1x1/skoll/open-treasure-chest.svg");
+  border: solid #fbc02d 2px;
+  background-color: #f5cd62; /*rgba(251,192,45, 0.75);*/
 }
 </style>
