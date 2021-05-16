@@ -28,7 +28,8 @@ export default {
         "exploring",
         "fight",
         "quest",
-        "note"
+        "note",
+        "treasure"
       ],
       is_textarea_error : false,
       is_select_error : false,
