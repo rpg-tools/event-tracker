@@ -8,13 +8,14 @@
       <select v-model="log_category_input"  v-bind:class="{ error: is_select_error }">
         <option v-for="category in categories" :key="category">{{category}}</option>
       </select>
-      <div class="button_add" v-on:click="add_log">Add</div>
+      <div class="button_add" v-on:click="add_log" v-if="log_id == ''">Add</div>
+      <div class="button_add" v-on:click="update_log" v-if="log_id != ''">Update</div>
     </div>
   </div>
 </template>
 
 <script>
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuid } from 'uuid';
 
 export default {
   name: "LogForm",
@@ -30,8 +31,25 @@ export default {
       is_title_error : false,
       log_input: "",
       log_category_input: "",
-      log_title: ""
+      log_title: "",
+      log_id: ""
     }
+  },
+  created: function() {
+    this.$store.subscribe((mutation, state) => {
+      if (mutation.type === 'select_log') {
+        this.log_input = state.selected_log.log;
+        this.log_category_input = state.selected_log.type;
+        this.log_title = state.selected_log.title;
+        this.log_id = state.selected_log.id;
+      }
+      if (mutation.type === 'update_log' || mutation.type === 'delete_log') {
+        this.log_input = "";
+        this.log_category_input = "";
+        this.log_title = "";
+        this.log_id = "";
+      }
+    });
   },
   methods: {
     add_log: function() {
@@ -51,7 +69,32 @@ export default {
             "month" : this.$store.getters.month,
             "year" : this.$store.getters.year
           },
-          "id" : uuidv4()
+          "id" : uuid()
+        })
+
+        this.log_input = ""
+        this.log_category_input = ""
+        this.log_title = ""
+      }
+    },
+    update_log: function() {
+      this.is_textarea_error = this.log_input == ""
+      this.is_select_error = this.log_category_input == ""
+      this.is_title_error = this.log_title == ""
+
+      if (!this.is_textarea_error && !this.is_select_error && !this.is_title_error) {
+        this.$store.commit('update_log', {
+          "type": this.log_category_input,
+          "title": this.log_title,
+          "log" : this.log_input,
+          "time" : {
+            "minute" : this.$store.getters.selected_log.time.minute,
+            "hour" : this.$store.getters.selected_log.time.hour,
+            "day" : this.$store.getters.selected_log.time.day,
+            "month" : this.$store.getters.selected_log.time.month,
+            "year" : this.$store.getters.selected_log.time.year
+          },
+          "id" : this.log_id
         })
 
         this.log_input = ""
@@ -59,7 +102,7 @@ export default {
         this.log_title = ""
       }
     }
-  }
+  },
 }
 </script>
 

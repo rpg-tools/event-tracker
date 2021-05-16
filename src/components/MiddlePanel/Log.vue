@@ -1,5 +1,5 @@
 <template>
-  <div class="log">
+  <div class="log" v-on:click="select_log(log)">
     <div class="token_container">
       <div class="token" v-bind:class="{ encounter_token: log.type == 'encounter', exploring_token: log.type == 'exploring',
           fight_token: log.type == 'fight' }"></div>
@@ -30,6 +30,9 @@ export default {
         return "0" + number
       }
       return number
+    },
+    select_log: function(log) {
+      this.$store.commit('select_log', log)
     }
   }
 }

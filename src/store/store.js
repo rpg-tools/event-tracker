@@ -16,7 +16,8 @@ export const store = new Vuex.Store({
         day: 1,
         month: 1,
         year: 1,
-        logs: []
+        logs: [],
+        selected_log: null
     },
     plugins: [vuexPersist.plugin],
     mutations: {
@@ -52,6 +53,17 @@ export const store = new Vuex.Store({
         },
         add_logs(state, log) {
             state.logs.push(log)
+        },
+        select_log(state, log) {
+            state.selected_log = log
+        },
+        update_log(state, log) {
+            state.logs.splice(state.logs.indexOf(state.selected_log), 1, log)
+            state.selected_log = null
+        },
+        delete_log(state) {
+            state.logs.splice(state.logs.indexOf(state.selected_log), 1)
+            state.selected_log = null
         }
     },
     getters: {
@@ -60,7 +72,8 @@ export const store = new Vuex.Store({
         day: state => state.day,
         month: state => state.month,
         year: state => state.year,
-        logs: state => state.logs
+        logs: state => state.logs,
+        selected_log: state => state.selected_log
     }
 })
 
