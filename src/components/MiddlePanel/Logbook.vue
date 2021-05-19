@@ -16,7 +16,7 @@ export default {
       logbook.scrollTop = logbook.offsetHeight + 1000;
     }, 100)
     this.$store.subscribe((mutation) => {
-      if (mutation.type == 'update_log' || mutation.type == 'delete_log' || mutation.type == 'add_logs') {
+      if (mutation.type == 'update_log' || mutation.type == 'delete_log' || mutation.type == 'add_logs') { // TODO : Mettre des constantes
         setTimeout(function() {
           var logbook = document.getElementById("logbook");
           console.log(logbook.style)

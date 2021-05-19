@@ -84,9 +84,10 @@ export const store = new Vuex.Store({
 })
 
 /* ----- ADD ----- */
+// TODO : Description
 function add_minute(state, minutes) {
     state.minute = state.minute + minutes
-    if (state.minute >= 60) {
+    if (state.minute >= 60) { // TODO : Mettre des constantes
         let nbr_add_hour = (state.minute - (state.minute % 60)) / 60
         state.minute = state.minute % 60
         add_hour(state, nbr_add_hour)
