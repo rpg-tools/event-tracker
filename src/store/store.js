@@ -19,6 +19,7 @@ export const store = new Vuex.Store({
         year: 1,
         logs: [],
         selected_log: null,
+        selected_quest: null,
         quests: []
     },
     plugins: [vuexPersist.plugin],
@@ -101,6 +102,15 @@ export const store = new Vuex.Store({
         },
         unselect_log(state) {
             state.selected_log = null
+        },
+
+        /* --- QUEST MUTATION --- */
+        select_quest(state, quest) {
+            if (state.selected_quest != null && state.selected_quest.id == quest.id) {
+                state.selected_quest = null
+            } else {
+                state.selected_quest = quest
+            }
         }
     },
     getters: {
@@ -109,7 +119,9 @@ export const store = new Vuex.Store({
         day: state => state.day,
         month: state => state.month,
         year: state => state.year,
-        logs: state => state.logs,
+        logs: state => state.logs.filter(log => {
+            return state.selected_quest == null || state.selected_quest != null && (log.id == state.selected_quest.id || log.quest == state.selected_quest.id)
+        }),
         quests: state => state.quests,
         questname: (state) => {
             return function (id) {

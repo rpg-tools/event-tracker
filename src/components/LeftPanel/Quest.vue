@@ -1,5 +1,5 @@
 <template>
-  <div class="content quest">
+  <div class="content quest" v-on:click="selectQuest">
     <div class="title">
       {{quest.title}}
     </div>
@@ -13,6 +13,9 @@ export default {
     quest: Object
   },
   methods : {
+    selectQuest: function() {
+      this.$store.commit('select_quest', this.quest)
+    }
   }
 }
 </script>
