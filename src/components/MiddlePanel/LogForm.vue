@@ -62,6 +62,7 @@ export default {
         this.log_category_input = state.selected_log.type;
         this.log_title = state.selected_log.title;
         this.log_id = state.selected_log.id;
+        this.log_quest_input = state.selected_log.quest;
       }
       if (mutation.type === 'update_log' || mutation.type === 'delete_log' || mutation.type === 'unselect_log') {
         this.log_input = "";
