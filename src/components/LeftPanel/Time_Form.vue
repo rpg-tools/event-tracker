@@ -17,7 +17,7 @@
            v-on:click="selectTimeUnit('year')">Year</div>
     </div>
     <div class="line">
-      <div class="radio minus" v-on:click="remove_time(time_input)">-</div>
+      <div class="radio minus" v-on:click="subtract_time(time_input)">-</div>
       <div class="radio add" v-on:click="add_time(time_input)">+</div>
     </div>
   </div>
@@ -47,21 +47,21 @@ export default {
       this.month_style = timeUnit == "month";
       this.year_style = timeUnit == "year";
     },
-    remove_time : function(time_to_remove) {
+    subtract_time : function(time_to_remove) {
       if (this.minute_style) {
-        this.$store.commit('remove_minute', parseInt(time_to_remove))
+        this.$store.commit('subtract_minute', parseInt(time_to_remove))
       }
       if (this.hour_style) {
-        this.$store.commit('remove_hour', parseInt(time_to_remove))
+        this.$store.commit('subtract_hour', parseInt(time_to_remove))
       }
       if (this.day_style) {
-        this.$store.commit('remove_day', parseInt(time_to_remove))
+        this.$store.commit('subtract_day', parseInt(time_to_remove))
       }
       if (this.month_style) {
-        this.$store.commit('remove_month', parseInt(time_to_remove))
+        this.$store.commit('subtract_month', parseInt(time_to_remove))
       }
       if (this.year_style) {
-        this.$store.commit('remove_year', parseInt(time_to_remove))
+        this.$store.commit('subtract_year', parseInt(time_to_remove))
       }
     },
     add_time : function(time_to_add) {

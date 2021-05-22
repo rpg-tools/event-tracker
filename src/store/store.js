@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersist from 'vuex-persist'
+import {NBR_DAYS_IN_MONTH, NBR_HOURS_IN_DAY, NBR_MINUTES_IN_HOUR, NBR_MONTHS_IN_YEAR} from "@/constants/time_constant";
 
 const vuexPersist = new VuexPersist({
     key: 'rpg-event-tracker',
@@ -21,6 +22,7 @@ export const store = new Vuex.Store({
     },
     plugins: [vuexPersist.plugin],
     mutations: {
+        /* --- TIME MUTATIONS --- */
         add_minute(state, minutes) {
             add_minute(state, minutes)
         },
@@ -36,21 +38,23 @@ export const store = new Vuex.Store({
         add_year(state, hours) {
             add_year(state, hours)
         },
-        remove_minute(state, minutes) {
-            remove_minute(state, minutes)
+        subtract_minute(state, minutes) {
+            subtract_minute(state, minutes)
         },
-        remove_hour(state, minutes) {
-            remove_hour(state, minutes)
+        subtract_hour(state, minutes) {
+            subtract_hour(state, minutes)
         },
-        remove_day(state, minutes) {
-            remove_day(state, minutes)
+        subtract_day(state, minutes) {
+            subtract_day(state, minutes)
         },
-        remove_month(state, minutes) {
-            remove_month(state, minutes)
+        subtract_month(state, minutes) {
+            subtract_month(state, minutes)
         },
-        remove_year(state, minutes) {
-            remove_year(state, minutes)
+        subtract_year(state, minutes) {
+            subtract_year(state, minutes)
         },
+
+        /* --- LOGS MUTATIONS --- */
         add_logs(state, log) {
             state.logs.push(log)
         },
@@ -84,89 +88,138 @@ export const store = new Vuex.Store({
 })
 
 /* ----- ADD ----- */
-// TODO : Description
+/**
+ * Add the number of minutes given in parameters to the stored time.
+ * @param state - Current state of the store.
+ * @param minutes : int - Number of minutes to add.
+ */
 function add_minute(state, minutes) {
     state.minute = state.minute + minutes
-    if (state.minute >= 60) { // TODO : Mettre des constantes
-        let nbr_add_hour = (state.minute - (state.minute % 60)) / 60
-        state.minute = state.minute % 60
+    if (state.minute >= NBR_MINUTES_IN_HOUR) {
+        let nbr_add_hour = (state.minute - (state.minute % NBR_MINUTES_IN_HOUR)) / NBR_MINUTES_IN_HOUR
+        state.minute = state.minute % NBR_MINUTES_IN_HOUR
         add_hour(state, nbr_add_hour)
     }
 }
 
+/**
+ * Add the number of hours given in parameters to the stored time.
+ * @param state - Current state of the store.
+ * @param hours : int - Number of hours to add.
+ */
 function add_hour(state, hours){
     state.hour = state.hour + hours
-    if (state.hour >= 24) {
-        let nbr_add_day = (state.hour - (state.hour % 24)) / 24
-        state.hour = state.hour % 24
+    if (state.hour >= NBR_HOURS_IN_DAY) {
+        let nbr_add_day = (state.hour - (state.hour % NBR_HOURS_IN_DAY)) / NBR_HOURS_IN_DAY
+        state.hour = state.hour % NBR_HOURS_IN_DAY
         add_day(state, nbr_add_day)
     }
 }
 
+/**
+ * Add the number of days given in parameters to the stored time.
+ * @param state - Current state of the store.
+ * @param days : int - Number of days to add.
+ */
 function add_day(state, days) {
     state.day = state.day + days
-    if (state.day > 30) {
-        let nbr_add_month = (state.day - (state.day % 30)) / 30
-        state.day = state.day % 30
+    if (state.day > NBR_DAYS_IN_MONTH) {
+        let nbr_add_month = (state.day - (state.day % NBR_DAYS_IN_MONTH)) / NBR_DAYS_IN_MONTH
+        state.day = state.day % NBR_DAYS_IN_MONTH
         add_month(state, nbr_add_month)
     }
 }
 
-function add_month(state, month) {
-    state.month = state.month + month
-    if (state.month > 12) {
-        let nbr_add_year = (state.month - (state.month % 12)) / 12
-        state.month = state.month % 12
+/**
+ * Add the number of months given in parameters to the stored time.
+ * @param state - Current state of the store.
+ * @param months : int - Number of months to add.
+ */
+function add_month(state, months) {
+    state.month = state.month + months
+    if (state.month > NBR_MONTHS_IN_YEAR) {
+        let nbr_add_year = (state.month - (state.month % NBR_MONTHS_IN_YEAR)) / NBR_MONTHS_IN_YEAR
+        state.month = state.month % NBR_MONTHS_IN_YEAR
         add_year(state, nbr_add_year)
     }
 }
 
-function add_year(state, year) {
-    state.year = state.year + year
+/**
+ * Add the number of years given in parameters to the stored time.
+ * @param state - Current state of the store.
+ * @param years : int - Number of years to add.
+ */
+function add_year(state, years) {
+    state.year = state.year + years
 }
 
 /* ----- REMOVE ----- */
-function remove_minute(state, minutes) {
+/**
+ * Subtract the number of minutes given in parameters to the stored time.
+ * @param state - Current state of the store.
+ * @param minutes : int - Number of minutes to subtract.
+ */
+function subtract_minute(state, minutes) {
     if (minutes > state.minute) {
         let delta_minutes = minutes - state.minute
-        state.minute = 60 - (delta_minutes%60)
-        remove_hour(state, 1 + ((delta_minutes-(delta_minutes%60)) / 60))
+        state.minute = NBR_MINUTES_IN_HOUR - (delta_minutes%NBR_MINUTES_IN_HOUR)
+        subtract_hour(state, 1 + ((delta_minutes-(delta_minutes%NBR_MINUTES_IN_HOUR)) / NBR_MINUTES_IN_HOUR))
     } else {
         state.minute = state.minute - minutes
     }
 }
 
-function remove_hour(state, hours){
+/**
+ * Subtract the number of hours given in parameters to the stored time.
+ * @param state - Current state of the store.
+ * @param hours : int - Number of hours to subtract.
+ */
+function subtract_hour(state, hours){
     if (hours > state.hour) {
         let delta_hours = hours - state.hour
-        state.hour = 24 - (delta_hours%24)
-        remove_day(state, 1 + ((delta_hours-(delta_hours%24)) / 24))
+        state.hour = NBR_HOURS_IN_DAY - (delta_hours%NBR_HOURS_IN_DAY)
+        subtract_day(state, 1 + ((delta_hours-(delta_hours%NBR_HOURS_IN_DAY)) / NBR_HOURS_IN_DAY))
     } else {
         state.hour = state.hour - hours
     }
 }
 
-function remove_day(state, days) {
+/**
+ * Subtract the number of days given in parameters to the stored time.
+ * @param state - Current state of the store.
+ * @param days : int - Number of days to subtract.
+ */
+function subtract_day(state, days) {
     if (days >= state.day) {
         let delta_days = days - state.day
-        state.day = 30 - (delta_days%30)
-        remove_month(state, 1 + ((delta_days-(delta_days%30)) / 30))
+        state.day = NBR_DAYS_IN_MONTH - (delta_days%NBR_DAYS_IN_MONTH)
+        subtract_month(state, 1 + ((delta_days-(delta_days%NBR_DAYS_IN_MONTH)) / NBR_DAYS_IN_MONTH))
     } else {
         state.day = state.day - days
     }
 }
 
-function remove_month(state, month) {
-    if (month >= state.month) {
-        let delta_months = month - state.month
-        state.month = 12 - (delta_months%12)
-        remove_year(state, 1 + ((delta_months-(delta_months%12)) / 12))
+/**
+ * Subtract the number of months given in parameters to the stored time.
+ * @param state - Current state of the store.
+ * @param months : int - Number of months to subtract.
+ */
+function subtract_month(state, months) {
+    if (months >= state.month) {
+        let delta_months = months - state.month
+        state.month = NBR_MONTHS_IN_YEAR - (delta_months%NBR_MONTHS_IN_YEAR)
+        subtract_year(state, 1 + ((delta_months-(delta_months%NBR_MONTHS_IN_YEAR)) / NBR_MONTHS_IN_YEAR))
     } else {
-        state.month = state.month - month
+        state.month = state.month - months
     }
 
 }
 
-function remove_year(state, year) {
-    state.year = state.year - year
+/**
+ * Subtract the number of years given in parameters to the stored time.
+ * @param state - Current state of the store.
+ * @param years : int - Number of years to subtract.
+ */
+function subtract_year(state, years) {
+    state.year = state.year - years
 }
