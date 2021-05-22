@@ -12,6 +12,7 @@
         <span class="description">
           {{log.type}} - {{log.time.day}}/{{log.time.month}}/X{{log.time.year}} -
           {{getNumberDoubleDigit(log.time.hour)}}:{{getNumberDoubleDigit(log.time.minute)}}
+          <span v-if="log.quest != ''">- {{questname_by_id(log.quest)}}</span>
         </span>
       </div>
       <div class="message">
@@ -36,6 +37,9 @@ export default {
     },
     select_log: function(log) {
       this.$store.commit('select_log', log)
+    },
+    questname_by_id: function(quest_id) {
+      return this.$store.getters.questname(quest_id)
     }
   }
 }

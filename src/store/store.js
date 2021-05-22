@@ -18,7 +18,8 @@ export const store = new Vuex.Store({
         month: 1,
         year: 1,
         logs: [],
-        selected_log: null
+        selected_log: null,
+        quests: []
     },
     plugins: [vuexPersist.plugin],
     mutations: {
@@ -78,6 +79,10 @@ export const store = new Vuex.Store({
                     return a.time.year - b.time.year
                 }
             })
+
+            state.quests = state.logs.filter(log => {
+                return log.type == "quest" && log.end != true
+            })
         },
         select_log(state, log) {
             state.selected_log = log
@@ -85,6 +90,10 @@ export const store = new Vuex.Store({
         update_log(state, log) {
             state.logs.splice(state.logs.indexOf(state.selected_log), 1, log)
             state.selected_log = null
+
+            state.quests = state.logs.filter(log => {
+                return log.type == "quest" && log.end != true
+            })
         },
         delete_log(state) {
             state.logs.splice(state.logs.indexOf(state.selected_log), 1)
@@ -101,9 +110,17 @@ export const store = new Vuex.Store({
         month: state => state.month,
         year: state => state.year,
         logs: state => state.logs,
-        quests: state => state.logs.filter(log => {
-            return log.type == "quest" && log.end != true
-        }),
+        quests: state => state.quests,
+        questname: (state) => {
+            return function (id) {
+                var quests_with_id = state.quests.filter(log => log.id == id)
+                if (quests_with_id.length > 0) {
+                    return quests_with_id[0].title
+                } else {
+                    return ""
+                }
+            };
+        },
         selected_log: state => state.selected_log
     }
 })

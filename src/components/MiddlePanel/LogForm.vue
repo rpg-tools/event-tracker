@@ -5,13 +5,24 @@
       <textarea v-model="log_input" v-bind:class="{ error: is_textarea_error }"></textarea>
     </div>
     <div class="options">
-      <select v-model="log_category_input"  v-bind:class="{ error: is_select_error }">
-        <option v-for="category in categories" :key="category">{{category}}</option>
-      </select>
-      <div class="button_add" v-on:click="add_log" v-if="log_id == ''">Add</div>
-      <div class="button_add" v-on:click="update_log" v-if="log_id != ''">Update</div>
-      <div class="button_add" v-on:click="delete_log" v-if="log_id != ''">Delete</div>
-      <div class="button_add" v-on:click="clear_log" v-if="log_id != ''">Clear</div>
+      <div style="display: flex;">
+        <span class="input_title">Category:</span>
+        <select v-model="log_category_input"  v-bind:class="{ error: is_select_error }">
+          <option v-for="category in categories" :key="category">{{category}}</option>
+        </select>
+      </div>
+      <div style="display: flex; padding-top: 4px;" v-if="log_category_input != 'quest'">
+        <span class="input_title">Quest:</span>
+        <select v-model="log_quest_input">
+          <option v-for="quest in $store.getters.quests" :key="quest.id" :quest="quest" :value="quest.id">{{quest.title}}</option>
+        </select>
+      </div>
+      <div style="display: flex; width: 100%; flex-wrap: wrap; justify-content: center;">
+        <div class="button_add" v-on:click="add_log" v-if="log_id == ''">Add</div>
+        <div class="button_add" v-on:click="update_log" v-if="log_id != ''">Update</div>
+        <div class="button_add" v-on:click="delete_log" v-if="log_id != ''">Delete</div>
+        <div class="button_add" v-on:click="clear_log" v-if="log_id != ''">Clear</div>
+      </div>
     </div>
   </div>
 </template>
@@ -36,6 +47,7 @@ export default {
       is_title_error : false,
       log_input: "",
       log_category_input: "",
+      log_quest_input: "",
       log_title: "",
       log_id: ""
     }
@@ -66,10 +78,14 @@ export default {
       this.is_title_error = this.log_title == ""
 
       if (!this.is_textarea_error && !this.is_select_error && !this.is_title_error) {
+        if (this.log_category_input == 'quest') {
+          this.log_quest_input = ""
+        }
         this.$store.commit('add_logs', {
           "type": this.log_category_input,
           "title": this.log_title,
           "log" : this.log_input,
+          "quest" : this.log_quest_input,
           "time" : {
             "minute" : this.$store.getters.minute,
             "hour" : this.$store.getters.hour,
@@ -82,6 +98,7 @@ export default {
 
         this.log_input = ""
         this.log_category_input = ""
+        this.log_quest_input = ""
         this.log_title = ""
       }
     },
@@ -91,10 +108,14 @@ export default {
       this.is_title_error = this.log_title == ""
 
       if (!this.is_textarea_error && !this.is_select_error && !this.is_title_error) {
+        if (this.log_category_input == 'quest') {
+          this.log_quest_input = ""
+        }
         this.$store.commit('update_log', {
           "type": this.log_category_input,
           "title": this.log_title,
           "log" : this.log_input,
+          "quest" : this.log_quest_input,
           "time" : {
             "minute" : this.$store.getters.selected_log.time.minute,
             "hour" : this.$store.getters.selected_log.time.hour,
@@ -107,6 +128,7 @@ export default {
 
         this.log_input = ""
         this.log_category_input = ""
+        this.log_quest_input = ""
         this.log_title = ""
       }
     },
@@ -122,7 +144,7 @@ export default {
 
 <style scoped>
 .input{
-  width: calc(100% - 16px);
+  width: calc(80% - 16px);
   height: 84px;
 }
 
@@ -151,10 +173,19 @@ textarea {
 }
 
 .options {
-  width: 150px;
+  width: 280px;
 }
 
-.options > select {
+.input_title {
+  color: #000000;
+  font-family: 'Roboto', sans-serif;
+  width: 150px;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding-top: 4px;
+}
+
+.options > div > select {
   width: 100%;
   font-family: 'Roboto', sans-serif;
   border-radius: 4px;
@@ -162,7 +193,7 @@ textarea {
   border-radius: 4px;
 }
 
-.options > .button_add {
+.options > div > .button_add {
   text-transform: uppercase;
   font-size: 12px;
   min-width: 60px;
