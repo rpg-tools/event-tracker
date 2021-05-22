@@ -57,6 +57,27 @@ export const store = new Vuex.Store({
         /* --- LOGS MUTATIONS --- */
         add_logs(state, log) {
             state.logs.push(log)
+
+            // Sort logs to be sure that the new log in inserted at the right place.
+            state.logs = state.logs.sort((a, b) => {
+                if (a.time.year == b.time.year) {
+                    if (a.time.month == b.time.month) {
+                        if (a.time.day == b.time.day) {
+                            if (a.time.hour == b.time.hour) {
+                                return a.time.minute - b.time.minute
+                            } else {
+                                return a.time.hour - b.time.hour
+                            }
+                        } else {
+                            return a.time.day - b.time.day
+                        }
+                    } else {
+                        return a.time.month -  b.time.month
+                    }
+                } else {
+                    return a.time.year - b.time.year
+                }
+            })
         },
         select_log(state, log) {
             state.selected_log = log
