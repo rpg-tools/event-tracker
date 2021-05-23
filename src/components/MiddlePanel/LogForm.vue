@@ -87,6 +87,7 @@ export default {
           "title": this.log_title,
           "log" : this.log_input,
           "quest" : this.log_quest_input,
+          "session" : this.$store.getters.session,
           "time" : {
             "minute" : this.$store.getters.minute,
             "hour" : this.$store.getters.hour,
@@ -117,6 +118,7 @@ export default {
           "title": this.log_title,
           "log" : this.log_input,
           "quest" : this.log_quest_input,
+          "session" : this.$store.getters.selected_log.session,
           "time" : {
             "minute" : this.$store.getters.selected_log.time.minute,
             "hour" : this.$store.getters.selected_log.time.hour,

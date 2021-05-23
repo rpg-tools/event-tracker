@@ -136,7 +136,8 @@ export const store = new Vuex.Store({
         month: state => state.month,
         year: state => state.year,
         logs: state => state.logs.filter(log => {
-            return state.selected_quest == null || state.selected_quest != null && (log.id == state.selected_quest.id || log.quest == state.selected_quest.id)
+            return (state.selected_quest == null && state.selected_session == log.session)
+                || (state.selected_quest != null && (log.id == state.selected_quest.id || log.quest == state.selected_quest.id))
         }),
         quests: state => state.quests,
         questname: (state) => {

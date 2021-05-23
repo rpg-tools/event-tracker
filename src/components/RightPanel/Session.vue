@@ -3,7 +3,7 @@
     <div class="current_session">Session {{session}}</div>
     <div>
       <div class="subtitle">Session history :</div>
-      <select v-model="selected_session">
+      <select v-model="selected_session" v-on:change="update_selected_session">
         <option v-for="session in getSessions()" :key="session" :value="session">Session #{{session}}</option>
       </select>
     </div>
@@ -43,6 +43,10 @@ export default {
       if (confirm("Are you sure to start a new session?")) {
         this.$store.commit('go_to_next_session')
       }
+    },
+    update_selected_session: function (event) {
+      console.log(event.target.value)
+      this.$store.commit('update_selected_session', event.target.value)
     }
   }
 }
