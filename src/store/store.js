@@ -99,6 +99,10 @@ export const store = new Vuex.Store({
         delete_log(state) {
             state.logs.splice(state.logs.indexOf(state.selected_log), 1)
             state.selected_log = null
+
+            state.quests = state.logs.filter(log => {
+                return log.type == "quest" && log.end != true
+            })
         },
         unselect_log(state) {
             state.selected_log = null
