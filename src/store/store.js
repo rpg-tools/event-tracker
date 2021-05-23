@@ -20,7 +20,9 @@ export const store = new Vuex.Store({
         logs: [],
         selected_log: null,
         selected_quest: null,
-        quests: []
+        quests: [],
+        session: 1,
+        selected_session: 1
     },
     plugins: [vuexPersist.plugin],
     mutations: {
@@ -115,7 +117,17 @@ export const store = new Vuex.Store({
             } else {
                 state.selected_quest = quest
             }
+        },
+
+        /* --- SESSION MUTATION --- */
+        go_to_next_session(state) {
+            state.session = state.session + 1
+            state.selected_session = state.session
+        },
+        update_selected_session(state, session) {
+            state.selected_session = session
         }
+
     },
     getters: {
         minute: state => state.minute,
@@ -137,7 +149,9 @@ export const store = new Vuex.Store({
                 }
             };
         },
-        selected_log: state => state.selected_log
+        selected_log: state => state.selected_log,
+        session: state => state.session,
+        selected_session: state => state.selected_session
     }
 })
 

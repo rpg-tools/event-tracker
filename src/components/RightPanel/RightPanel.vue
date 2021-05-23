@@ -1,12 +1,14 @@
 <template>
   <div class="right_panel">
-
+    <Session></Session>
   </div>
 </template>
 
 <script>
+import Session from "@/components/RightPanel/Session";
 export default {
-name: "RightPanel"
+name: "RightPanel",
+  components: {Session}
 }
 </script>
 
