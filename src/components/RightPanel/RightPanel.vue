@@ -1,14 +1,16 @@
 <template>
   <div class="right_panel">
     <Session></Session>
+    <Countdown></Countdown>
   </div>
 </template>
 
 <script>
 import Session from "@/components/RightPanel/Session";
+import Countdown from "@/components/RightPanel/Countdown";
 export default {
 name: "RightPanel",
-  components: {Session}
+  components: {Countdown, Session}
 }
 </script>
 

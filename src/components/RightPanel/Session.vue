@@ -40,7 +40,7 @@ export default {
       return sessions
     },
     begin_new_session: function () {
-      if (confirm("Are you sure to start a new session?")) {
+      if (confirm("Are you sure to start a new session? (Cancel if you don't want to)")) {
         this.$store.commit('go_to_next_session')
       }
     },
