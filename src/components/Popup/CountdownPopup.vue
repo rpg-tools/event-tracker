@@ -64,11 +64,11 @@ export default {
         this.$store.commit('add_countdown', { // TODO : Constante
           "id" : uuid(),
           "title": this.title,
-          "years": this.years,
-          "months": this.months,
-          "days": this.days,
-          "hours": this.hours,
-          "minutes": this.minutes,
+          "year": parseInt(this.years),
+          "month": parseInt(this.months),
+          "day": parseInt(this.days),
+          "hour": parseInt(this.hours),
+          "minute": parseInt(this.minutes),
           "open" : true
         })
         popup_store.commit('close_countdown_popup') // TODO : Constante

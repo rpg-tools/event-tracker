@@ -25,54 +25,54 @@ export default {
     defineLabels(countdown) {
       let isTextAdded = false
       let result = ''
-      if (parseInt(countdown.years) != 0) {
+      if (parseInt(countdown.year) != 0) {
         isTextAdded = true
-        if (parseInt(countdown.years) >= 0) {
-          result = result + "Y-" + countdown.years
+        if (parseInt(countdown.year) >= 0) {
+          result = result + "Y-" + countdown.year
         } else {
-          result = result + "Y+" + countdown.years
+          result = result + "Y+" + (countdown.year * -1)
         }
       }
       if (isTextAdded) {
         result = result + " "
       }
-      if (parseInt(countdown.months) != 0) {
+      if (parseInt(countdown.month) != 0) {
         isTextAdded = true
-        if (parseInt(countdown.months) >= 0) {
-          result = result + "M-" + countdown.months
+        if (parseInt(countdown.month) >= 0) {
+          result = result + "M-" + countdown.month
         } else {
-          result = result + "M+" + countdown.months
+          result = result + "M+" + (countdown.month * -1)
         }
       }
       if (isTextAdded) {
         result = result + " "
       }
-      if (parseInt(countdown.days) != 0) {
+      if (parseInt(countdown.day) != 0) {
         isTextAdded = true
-        if (parseInt(countdown.days) >= 0) {
-          result = result + "D-" + countdown.days
+        if (parseInt(countdown.day) >= 0) {
+          result = result + "D-" + countdown.day
         } else {
-          result = result + "D+" + countdown.days
+          result = result + "D+" + (countdown.day * -1)
         }
       }
       if (isTextAdded) {
         result = result + " "
       }
-      if (parseInt(countdown.hours) != 0) {
+      if (parseInt(countdown.hour) != 0) {
         isTextAdded = true
-        if (parseInt(countdown.hours) >= 0) {
-          result = result + "H-" + countdown.hours
+        if (parseInt(countdown.hour) >= 0) {
+          result = result + "H-" + countdown.hour
         } else {
-          result = result + "H+" + countdown.hours
+          result = result + "H+" + (countdown.hour * -1)
         }
       }
       if (isTextAdded) {
         result = result + " "
       }
-      if (parseInt(countdown.minutes) > 0 || (parseInt(countdown.minutes) == 0 && !isTextAdded)) {
-        result = result + "m-" + countdown.minutes
-      } else if (parseInt(countdown.minutes) < 0){
-        result = result + "m+" + countdown.minutes
+      if (parseInt(countdown.minute) > 0 || (parseInt(countdown.minute) == 0 && !isTextAdded)) {
+        result = result + "m-" + countdown.minute
+      } else if (parseInt(countdown.minute) < 0){
+        result = result + "m+" + (countdown.minute * -1)
       }
 
       return result
