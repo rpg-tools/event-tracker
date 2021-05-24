@@ -136,7 +136,9 @@ export default {
       }
     },
     delete_log: function () {
-      this.$store.commit('delete_log')
+      if (confirm('Are you sure to delete this log?')) {
+        this.$store.commit('delete_log')
+      }
     },
     clear_log: function() {
       this.$store.commit('unselect_log')
