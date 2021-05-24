@@ -26,7 +26,8 @@ export const store = new Vuex.Store({
         quests: [],
         session: 1,
         selected_sessions: [],
-        countdowns: []
+        countdowns: [],
+        selected_countdown : null
     },
     plugins: [vuexPersist.plugin],
     mutations: {
@@ -155,6 +156,17 @@ export const store = new Vuex.Store({
         /* --- COUNTDOWN MUTATION --- */
         add_countdown(state, countdown) {
             state.countdowns.push(countdown)
+        },
+        update_countdown(state, countdown) {
+            state.countdowns.splice(state.countdowns.indexOf(state.selected_countdown), 1, countdown)
+            state.selected_countdown = null
+        },
+        delete_countdown(state) {
+            state.countdowns.splice(state.countdowns.indexOf(state.selected_countdown), 1)
+            state.selected_countdown = null
+        },
+        select_countdown(state, countdown) {
+            state.selected_countdown = countdown
         }
     },
     getters: {
@@ -199,6 +211,7 @@ export const store = new Vuex.Store({
             } else {
                 return a.year - b.year
             }
-        })
+        }),
+        selected_countdown: state => state.selected_countdown
     }
 })

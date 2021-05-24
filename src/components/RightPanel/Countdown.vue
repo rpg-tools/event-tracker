@@ -5,7 +5,8 @@
     </div>
     <div class="button" v-on:click="open_popup()">Add countdown</div>
     <div class="countdown_list">
-      <div v-for="countdown in $store.getters.countdowns" :key="countdown.id" :quest="countdown" class="countdown">
+      <div v-for="countdown in $store.getters.countdowns" :key="countdown.id" :quest="countdown" class="countdown"
+          v-on:click="selectCountdown(countdown)">
         <div class="countdown_title">{{countdown.title}}</div>
         <div class="time_until">{{defineLabels(countdown)}}</div>
       </div>
@@ -76,6 +77,10 @@ export default {
       }
 
       return result
+    },
+    selectCountdown(countdown) {
+      this.$store.commit('select_countdown', countdown) // TODO : Constantes
+      popup_store.commit('open_countdown_popup') // TODO : Constantes
     }
   }
 }

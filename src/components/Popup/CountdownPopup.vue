@@ -31,7 +31,9 @@
     </div>
     <div class="input_line" style="justify-content: center">
       <div class="button minus" v-on:click="closePopup">Cancel</div>
-      <div class="button add" v-on:click="createCountdown">Create</div>
+      <div class="button add" v-on:click="createCountdown" v-if="id == ''">Create</div>
+      <div class="button add" v-on:click="updateCountdown" v-if="id != ''">Update</div>
+      <div class="button minus" v-on:click="deleteCountdown" v-if="id != ''">Delete</div>
     </div>
   </div>
 </template>
@@ -44,6 +46,7 @@ export default {
   name: "CountdownPopup",
   data: function () {
     return {
+      id: "",
       title: "",
       years : "0",
       months : "0",
@@ -51,6 +54,15 @@ export default {
       hours : "0",
       minutes : "0"
     }
+  },
+  created: function() {
+    this.title = this.$store.getters.selected_countdown.title
+    this.years = this.$store.getters.selected_countdown.year
+    this.months = this.$store.getters.selected_countdown.month
+    this.days = this.$store.getters.selected_countdown.day
+    this.hours = this.$store.getters.selected_countdown.hour
+    this.minutes = this.$store.getters.selected_countdown.minute
+    this.id = this.$store.getters.selected_countdown.id
   },
   methods: {
     checkInputValue : function (event) {
@@ -68,8 +80,7 @@ export default {
           "month": parseInt(this.months),
           "day": parseInt(this.days),
           "hour": parseInt(this.hours),
-          "minute": parseInt(this.minutes),
-          "open" : true
+          "minute": parseInt(this.minutes)
         })
         popup_store.commit('close_countdown_popup') // TODO : Constante
 
@@ -79,6 +90,45 @@ export default {
         this.days = "0"
         this.hours = "0"
         this.minutes = "0"
+        this.id = ""
+      }
+    },
+    updateCountdown : function () {
+      if (this.title != '') {
+        this.$store.commit('update_countdown', { // TODO : Constante
+          "id" : this.id,
+          "title": this.title,
+          "year": parseInt(this.years),
+          "month": parseInt(this.months),
+          "day": parseInt(this.days),
+          "hour": parseInt(this.hours),
+          "minute": parseInt(this.minutes)
+        })
+        popup_store.commit('close_countdown_popup') // TODO : Constante
+
+        this.title = ""
+        this.years = "0"
+        this.months = "0"
+        this.days = "0"
+        this.hours = "0"
+        this.minutes = "0"
+        this.id = ""
+      }
+    },
+    deleteCountdown : function () {
+      if (confirm("Are you sure to delete this countdown?")) { // TODO : Constante
+        if (this.title != '') {
+          this.$store.commit('delete_countdown')
+          popup_store.commit('close_countdown_popup') // TODO : Constante
+
+          this.title = ""
+          this.years = "0"
+          this.months = "0"
+          this.days = "0"
+          this.hours = "0"
+          this.minutes = "0"
+          this.id = ""
+        }
       }
     }
   }

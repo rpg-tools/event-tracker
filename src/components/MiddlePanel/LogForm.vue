@@ -57,14 +57,14 @@ export default {
       this.is_textarea_error = false
       this.is_select_error = false
       this.is_title_error = false
-      if (mutation.type === 'select_log') {
+      if (mutation.type === 'select_log') { // TODO : Constantes
         this.log_input = state.selected_log.log;
         this.log_category_input = state.selected_log.type;
         this.log_title = state.selected_log.title;
         this.log_id = state.selected_log.id;
         this.log_quest_input = state.selected_log.quest;
       }
-      if (mutation.type === 'update_log' || mutation.type === 'delete_log' || mutation.type === 'unselect_log') {
+      if (mutation.type === 'update_log' || mutation.type === 'delete_log' || mutation.type === 'unselect_log') { // TODO : Constantes
         this.log_input = "";
         this.log_category_input = "";
         this.log_title = "";
