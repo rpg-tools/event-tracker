@@ -6,20 +6,20 @@
 
 <script>
 import Log from "@/components/MiddlePanel/Log";
+import {MUTATION_LOGS_ADD, MUTATION_LOGS_DELETE, MUTATION_LOGS_UPDATE} from "@/constants/mutations_event";
+
 export default {
   name: "Logbook",
   components: {Log},
   created: function() {
     setTimeout(function() {
       var logbook = document.getElementById("logbook");
-      console.log(logbook.style)
       logbook.scrollTop = logbook.offsetHeight + 1000;
     }, 100)
     this.$store.subscribe((mutation) => {
-      if (mutation.type == 'update_log' || mutation.type == 'delete_log' || mutation.type == 'add_logs') { // TODO : Mettre des constantes
+      if (mutation.type == MUTATION_LOGS_UPDATE || mutation.type == MUTATION_LOGS_DELETE || mutation.type == MUTATION_LOGS_ADD) {
         setTimeout(function() {
           var logbook = document.getElementById("logbook");
-          console.log(logbook.style)
           logbook.scrollTop = logbook.offsetHeight + 1000;
         }, 100)
       }
