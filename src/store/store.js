@@ -22,7 +22,8 @@ export const store = new Vuex.Store({
         selected_quest: null,
         quests: [],
         session: 1,
-        selected_sessions: []
+        selected_sessions: [],
+        countdowns: []
     },
     plugins: [vuexPersist.plugin],
     mutations: {
@@ -126,8 +127,12 @@ export const store = new Vuex.Store({
         },
         update_selected_sessions(state, session) {
             state.selected_sessions = session
-        }
+        },
 
+        /* --- COUNTDOWN MUTATION --- */
+        add_countdown(state, countdown) {
+            state.countdowns.push(countdown)
+        }
     },
     getters: {
         minute: state => state.minute,
@@ -152,7 +157,26 @@ export const store = new Vuex.Store({
         },
         selected_log: state => state.selected_log,
         session: state => state.session,
-        selected_sessions: state => state.selected_sessions
+        selected_sessions: state => state.selected_sessions,
+        countdowns: state => state.countdowns.sort((a, b) => {
+            if (a.years == b.years) {
+                if (a.months == b.months) {
+                    if (a.days == b.days) {
+                        if (a.hours == b.hours) {
+                            return a.minutes - b.minutes
+                        } else {
+                            return a.hours - b.hours
+                        }
+                    } else {
+                        return a.days - b.days
+                    }
+                } else {
+                    return a.months - b.months
+                }
+            } else {
+                return a.years - b.years
+            }
+        })
     }
 })
 

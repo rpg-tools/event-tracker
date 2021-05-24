@@ -6,7 +6,7 @@
     <RightPanel/>
 
     <div class="popup_container" v-if="is_countdown_popup_open">
-      <div class="modal_background"></div>
+      <div class="modal_background"  v-on:click="close_popup()"></div>
       <CountdownPopup></CountdownPopup>
     </div>
   </div>
@@ -30,6 +30,11 @@ export default {
   computed: {
     is_countdown_popup_open () {
       return popup_store.getters.is_countdown_popup_open
+    }
+  },
+  methods: {
+    close_popup() {
+      popup_store.commit('close_countdown_popup') // TODO : Constante
     }
   }
 }

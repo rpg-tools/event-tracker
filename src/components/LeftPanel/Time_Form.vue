@@ -2,7 +2,7 @@
   <div class="time_form">
     <div class="line">
       <input type="text" maxlength="4" v-model="time_input" v-on:keydown="checkInputValue"
-             v-on:keyup="checkInputValue" v-on:change="checkInputValue"/>
+             v-on:keyup="checkInputValue" v-on:change="checkInputValue" v-on:blur="checkInputValue"/>
     </div>
     <div class="line">
       <div class="radio" v-bind:class="{ selected_time_unit: minute_style }"

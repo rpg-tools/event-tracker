@@ -5,7 +5,10 @@
     </div>
     <div class="button" v-on:click="open_popup()">Add countdown</div>
     <div class="countdown_list">
-
+      <div v-for="countdown in $store.getters.countdowns" :key="countdown.id" :quest="countdown" class="countdown">
+        <div class="countdown_title">{{countdown.title}}</div>
+        <div class="time_until">{{defineLabels(countdown)}}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -18,6 +21,61 @@ export default {
   methods: {
     open_popup() {
       popup_store.commit('open_countdown_popup') // TODO : Constantes
+    },
+    defineLabels(countdown) {
+      let isTextAdded = false
+      let result = ''
+      if (parseInt(countdown.years) != 0) {
+        isTextAdded = true
+        if (parseInt(countdown.years) >= 0) {
+          result = result + "Y-" + countdown.years
+        } else {
+          result = result + "Y+" + countdown.years
+        }
+      }
+      if (isTextAdded) {
+        result = result + " "
+      }
+      if (parseInt(countdown.months) != 0) {
+        isTextAdded = true
+        if (parseInt(countdown.months) >= 0) {
+          result = result + "M-" + countdown.months
+        } else {
+          result = result + "M+" + countdown.months
+        }
+      }
+      if (isTextAdded) {
+        result = result + " "
+      }
+      if (parseInt(countdown.days) != 0) {
+        isTextAdded = true
+        if (parseInt(countdown.days) >= 0) {
+          result = result + "D-" + countdown.days
+        } else {
+          result = result + "D+" + countdown.days
+        }
+      }
+      if (isTextAdded) {
+        result = result + " "
+      }
+      if (parseInt(countdown.hours) != 0) {
+        isTextAdded = true
+        if (parseInt(countdown.hours) >= 0) {
+          result = result + "H-" + countdown.hours
+        } else {
+          result = result + "H+" + countdown.hours
+        }
+      }
+      if (isTextAdded) {
+        result = result + " "
+      }
+      if (parseInt(countdown.minutes) > 0 || (parseInt(countdown.minutes) == 0 && !isTextAdded)) {
+        result = result + "m-" + countdown.minutes
+      } else if (parseInt(countdown.minutes) < 0){
+        result = result + "m+" + countdown.minutes
+      }
+
+      return result
     }
   }
 }
@@ -47,6 +105,27 @@ export default {
   margin-bottom: 8px;
   overflow-y: auto;
   overflow-x: hidden;
+  text-align: center;
+}
+
+.countdown {
+  background-color: rgba(80,80,80,0.2);
+  border-radius: 4px;
+  padding: 2px;
+  margin-top: 4px;
+}
+
+.countdown_title{
+  color: #000000;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+.time_until {
+  font-weight: bold;
+  color: #b71c1c;
+  font-size: 12px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .button {
