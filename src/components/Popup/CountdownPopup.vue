@@ -56,13 +56,15 @@ export default {
     }
   },
   created: function() {
-    this.title = this.$store.getters.selected_countdown.title
-    this.years = this.$store.getters.selected_countdown.year
-    this.months = this.$store.getters.selected_countdown.month
-    this.days = this.$store.getters.selected_countdown.day
-    this.hours = this.$store.getters.selected_countdown.hour
-    this.minutes = this.$store.getters.selected_countdown.minute
-    this.id = this.$store.getters.selected_countdown.id
+    if (this.$store.getters.selected_countdown != null) {
+      this.title = this.$store.getters.selected_countdown.title
+      this.years = this.$store.getters.selected_countdown.year
+      this.months = this.$store.getters.selected_countdown.month
+      this.days = this.$store.getters.selected_countdown.day
+      this.hours = this.$store.getters.selected_countdown.hour
+      this.minutes = this.$store.getters.selected_countdown.minute
+      this.id = this.$store.getters.selected_countdown.id
+    }
   },
   methods: {
     checkInputValue : function (event) {
