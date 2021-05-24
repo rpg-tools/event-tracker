@@ -22,7 +22,7 @@ export const store = new Vuex.Store({
         selected_quest: null,
         quests: [],
         session: 1,
-        selected_session: 1
+        selected_sessions: []
     },
     plugins: [vuexPersist.plugin],
     mutations: {
@@ -122,10 +122,10 @@ export const store = new Vuex.Store({
         /* --- SESSION MUTATION --- */
         go_to_next_session(state) {
             state.session = state.session + 1
-            state.selected_session = state.session
+            state.selected_sessions.push(parseInt(state.session))
         },
-        update_selected_session(state, session) {
-            state.selected_session = session
+        update_selected_sessions(state, session) {
+            state.selected_sessions = session
         }
 
     },
@@ -136,7 +136,7 @@ export const store = new Vuex.Store({
         month: state => state.month,
         year: state => state.year,
         logs: state => state.logs.filter(log => {
-            return (state.selected_quest == null && state.selected_session == log.session)
+            return (state.selected_quest == null && state.selected_sessions.indexOf(log.session) > -1)
                 || (state.selected_quest != null && (log.id == state.selected_quest.id || log.quest == state.selected_quest.id))
         }),
         quests: state => state.quests,
@@ -152,7 +152,7 @@ export const store = new Vuex.Store({
         },
         selected_log: state => state.selected_log,
         session: state => state.session,
-        selected_session: state => state.selected_session
+        selected_sessions: state => state.selected_sessions
     }
 })
 

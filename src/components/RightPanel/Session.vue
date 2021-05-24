@@ -3,7 +3,7 @@
     <div class="current_session">Session {{session}}</div>
     <div>
       <div class="subtitle">Session history :</div>
-      <select v-model="selected_session" v-on:change="update_selected_session">
+      <select v-model="selected_sessions" v-on:change="update_selected_sessions" multiple>
         <option v-for="session in getSessions()" :key="session" :value="session">Session #{{session}}</option>
       </select>
     </div>
@@ -16,7 +16,7 @@ export default {
   name: "Session",
   data: function() {
     return {
-      selected_session: this.$store.getters.selected_session
+      selected_sessions: this.$store.getters.selected_sessions
     }
   },
   computed: {
@@ -26,7 +26,7 @@ export default {
   },
   watch: {
     session (newSession) {
-      this.selected_session = newSession
+      this.selected_sessions = newSession
     }
   },
   methods : {
@@ -44,9 +44,8 @@ export default {
         this.$store.commit('go_to_next_session')
       }
     },
-    update_selected_session: function (event) {
-      console.log(event.target.value)
-      this.$store.commit('update_selected_session', event.target.value)
+    update_selected_sessions: function (event) {
+      this.$store.commit('update_selected_sessions', [...event.target.selectedOptions].map(option => parseInt(option.value)))
     }
   }
 }
